@@ -21,7 +21,7 @@ class Viewer extends React.Component {
   <div>
     <img className="phone" src={this.state.mainImg}/>
     <button onClick={this.props.onBack}>Back</button>
-    <button onClick={()=> {this.props.handleAddPhoneInBascket(this.state.name); console.log(this.state.name)}}>Add to basket</button>
+    <button onClick={()=> {this.props.handleAddPhoneInBascket(this.state.name)}}>Add to basket</button>
 
     <h1>{this.state.name}</h1>
     <p>{this.state.description}</p>
