@@ -4,6 +4,7 @@ import { getAll, getById } from './api/phone'
 import Basket from './Basket'
 import Filter from './Filter'
 import Catalog from './Catalog'
+import Viewer from './Viewer'
 
 import './App.css';
 
@@ -17,6 +18,11 @@ class App extends React.Component {
       selectedPhone: null,
       basketItems: [],
     };
+    this.handleAddPhoneInBascket = (PhoneName) => {
+      this.setState((prev)=> {
+        return { basketItems: [...prev.basketItems, PhoneName]}
+      })
+    }
   }
 
   render() {
@@ -26,7 +32,9 @@ class App extends React.Component {
           <div className="row">
             <div className="col-md-2">
               <Filter />
-              <Basket />
+              <Basket 
+              basketItems = {this.state.basketItems}
+              />
             </div>
             <div className="col-md-10">
               { this.state.selectedPhone ? (
@@ -37,6 +45,10 @@ class App extends React.Component {
                       selectedPhone: null,
                     });
                   }}
+                  selectedPhone = {this.state.selectedPhone}
+                  basketItems={this.state.basketItems}
+                  handleAddPhoneInBascket={this.handleAddPhoneInBascket}
+
                 />
               ) : (
                 <Catalog
@@ -44,12 +56,11 @@ class App extends React.Component {
                   onPhoneSelected={(phoneId) => {
                     this.setState({
                       selectedPhone: getById(phoneId),
-                    }); console.log('getById  ' + getById)
-                    console.log('selectedPhoneyId  ' + this.state.selectedPhone)
-                    console.log('getById  ' + phoneId)
-                    console.log('phones  ' + this.state.phones)
+                    });
                     
                   }}
+                  basketItems={this.state.basketItems}
+                  handleAddPhoneInBascket={this.handleAddPhoneInBascket}
                 /> 
               ) }
             </div>
@@ -59,49 +70,5 @@ class App extends React.Component {
     );
   }
 }
-
-
-class Viewer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mainImg: props.phone.images[0],
-      description: props.phone.description,
-      name: props.phone.name,
-      images: props.phone.images,
-
-    };
-
-    this.hanbleShowImg = (imgURl) => {
-      this.setState(()=> {
-        return { mainImg: imgURl };
-      });
-    };
-  }
-  render () {
-    return (
-  <div>
-    <img className="phone" src={this.state.mainImg}/>
-    <button onClick={this.props.onBack}>Back</button>
-    <button>Add to basket</button>
-
-    <h1>{this.state.name}</h1>
-    <p>{this.state.description}</p>
-
-    <ul className="phone-thumbs">
-      { this.state.images.map(imageUrl => (
-        <li>
-          <img 
-          onClick = {()=> {this.hanbleShowImg(imageUrl)}} 
-          src={imageUrl}/>
-        </li>
-      )) }
-    </ul>
-  </div>
-
-    );
-  }
-  
-};
 
 export default App;

@@ -1,13 +1,14 @@
 import React from 'react';
+import { tsPropertySignature } from '@babel/types';
 
-const Basket = () => {
+const Basket = (props) => {
   return (
     <section>
       <p>Shopping Cart</p>
       <ul>
-        <li>Phone 1 <button>x</button></li>
-        <li>Phone 2 <button>x</button></li>
-        <li>Phone 3 <button>x</button></li>
+      {props.basketItems.map(phone => (
+        <li>{phone}<button>x</button></li>
+        ))}
       </ul>
     </section>
   );
