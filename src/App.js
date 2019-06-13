@@ -18,18 +18,21 @@ class App extends React.Component {
       selectedPhone: null,
       basketItems: [],
     };
-    this.handleAddToBasket = (PhoneName) => {
-      this.setState((prev)=> {
-        return { basketItems: [...prev.basketItems, PhoneName]}
-      })
-    }
-    this.handleRemoveFromBasket = (phone) => {
-      this.state.basketItems.splice(phone, 1);
-      this.setState((prev) => {
-        return { basketItems: prev.basketItems}
-        
-      }) 
-    }
+    
+  }
+
+  handleRemoveFromBasket = (phone) => {
+    this.state.basketItems.splice(phone, 1);
+    this.setState((prev) => {
+      return { basketItems: prev.basketItems}
+      
+    }) 
+  }
+
+  handleAddToBasket = (PhoneName) => {
+    this.setState((prev)=> {
+      return { basketItems: [...prev.basketItems, PhoneName]}
+    })
   }
 
   render() {
