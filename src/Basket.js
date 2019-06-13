@@ -6,7 +6,7 @@ const Basket = (props) => {
       <p>Shopping Cart</p>
       <ul>
       {props.basketItems.map((phone, i) => (
-        <li key={i}>{phone}<button onClick={()=> {props.handleRemovePhone(i)}}>x</button></li>
+        <li key={i}>{phone}<button onClick={()=> {props.handleRemoveFromBasket(i)}}>x</button></li>
         ))}
       </ul>
     </section>

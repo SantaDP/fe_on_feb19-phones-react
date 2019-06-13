@@ -23,7 +23,7 @@ class App extends React.Component {
         return { basketItems: [...prev.basketItems, PhoneName]}
       })
     }
-    this.handleRemovePhone = (phone) => {
+    this.handleRemoveFromBasket = (phone) => {
       this.state.basketItems.splice(phone, 1);
       this.setState((prev) => {
         return { basketItems: prev.basketItems}
@@ -41,7 +41,7 @@ class App extends React.Component {
               <Filter />
               <Basket 
               basketItems = {this.state.basketItems}
-              handleRemovePhone = {this.handleRemovePhone}
+              handleRemoveFromBasket = {this.handleRemoveFromBasket}
               />
             </div>
             <div className="col-md-10">
