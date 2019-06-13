@@ -9,29 +9,29 @@ class Viewer extends React.Component {
       images: props.phone.images,
 
     };
-
-    this.hanbleShowImg = (imgURl) => {
-      this.setState(()=> {
-        return { mainImg: imgURl };
-      });
-    };
   }
+
+  handleShowImg(imgURl) {
+    this.setState(()=> {
+      return { mainImg: imgURl };
+    });
+  }
+
   render () {
     return (
   <div>
     <img className="phone" src={this.state.mainImg}/>
     <button onClick={this.props.onBack}>Back</button>
-    <button onClick={()=> {this.props.handleAddPhoneInBascket(this.state.name)}}>Add to basket</button>
+    <button onClick={()=> {this.props.handleAddToBasket(this.state.name)}}>Add to basket</button>
 
     <h1>{this.state.name}</h1>
     <p>{this.state.description}</p>
 
     <ul className="phone-thumbs">
       { this.state.images.map(imageUrl => (
-        <li>
-          <img key={this.props.selectedPhone.id}
-          
-          onClick = {()=> {this.hanbleShowImg(imageUrl)}} 
+        <li key={imageUrl}>
+          <img           
+          onClick = {()=> {this.handleShowImg(imageUrl)}} 
           src={imageUrl}/>
         </li>
       )) }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { tsPropertySignature } from '@babel/types';
 
 const Basket = (props) => {
   return (
@@ -7,7 +6,7 @@ const Basket = (props) => {
       <p>Shopping Cart</p>
       <ul>
       {props.basketItems.map((phone, i) => (
-        <li>{phone}<button onClick={()=> {props.handleRemovePhone(i)}}>x</button></li>
+        <li key={i}>{phone}<button onClick={()=> {props.handleRemovePhone(i)}}>x</button></li>
         ))}
       </ul>
     </section>

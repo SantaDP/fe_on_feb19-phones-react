@@ -18,13 +18,13 @@ class App extends React.Component {
       selectedPhone: null,
       basketItems: [],
     };
-    this.handleAddPhoneInBascket = (PhoneName) => {
+    this.handleAddToBasket = (PhoneName) => {
       this.setState((prev)=> {
         return { basketItems: [...prev.basketItems, PhoneName]}
       })
     }
     this.handleRemovePhone = (phone) => {
-      let arrWithPhones  =[this.state.basketItems.splice(phone, 1)];
+      this.state.basketItems.splice(phone, 1);
       this.setState((prev) => {
         return { basketItems: prev.basketItems}
         
@@ -55,7 +55,7 @@ class App extends React.Component {
                   }}
                   selectedPhone = {this.state.selectedPhone}
                   basketItems={this.state.basketItems}
-                  handleAddPhoneInBascket={this.handleAddPhoneInBascket}
+                  handleAddToBasket={this.handleAddToBasket}
 
                 />
               ) : (
@@ -68,7 +68,7 @@ class App extends React.Component {
                     
                   }}
                   basketItems={this.state.basketItems}
-                  handleAddPhoneInBascket={this.handleAddPhoneInBascket}
+                  handleAddToBasket={this.handleAddToBasket}
                 /> 
               ) }
             </div>

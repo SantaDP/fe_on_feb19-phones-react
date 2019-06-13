@@ -22,7 +22,7 @@ const Catalog = (props) => {
           <div className="phones__btn-buy-wrapper">
             <a 
             className="btn btn-success"
-            onClick={()=>{props.handleAddPhoneInBascket(phone.id)}}
+            onClick={()=>{props.handleAddToBasket(phone.id)}}
             
             >
               Add
