@@ -8,7 +8,6 @@ import Viewer from './Viewer'
 
 import './App.css';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,24 +15,32 @@ class App extends React.Component {
     this.state = {
       phones: getAll(),
       selectedPhone: null,
-      basketItems: [],
+      basketItems: {
+       
+      },
     };
     
   }
 
-  handleRemoveFromBasket = (phone) => {
-    this.state.basketItems.splice(phone, 1);
+  handleRemoveFromBasket = (phoneName) => {
     this.setState((prev) => {
-      return { basketItems: prev.basketItems}
-      
+      const copyBasketItems = {...prev.basketItems};
+      const count = copyBasketItems[phoneName] || 0;
+      count > 1 ? copyBasketItems[phoneName] = count -1: delete copyBasketItems[phoneName]
+
+      return { basketItems: copyBasketItems}
     }) 
   }
 
-  handleAddToBasket = (PhoneName) => {
+  handleAddToBasket = (phoneName) => { 
     this.setState((prev)=> {
-      return { basketItems: [...prev.basketItems, PhoneName]}
+      const quantity = prev.basketItems[phoneName] || 0;
+      const copyBasketItems = {...prev.basketItems};
+      copyBasketItems[phoneName] = quantity + 1;
+      return { basketItems: copyBasketItems}
     })
   }
+
 
   render() {
     return (

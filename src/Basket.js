@@ -1,12 +1,15 @@
 import React from 'react';
 
-const Basket = (props) => {
+const Basket = (props) => {  
   return (
     <section>
       <p>Shopping Cart</p>
       <ul>
-      {props.basketItems.map((phone, i) => (
-        <li key={i}>{phone}<button onClick={()=> {props.handleRemoveFromBasket(i)}}>x</button></li>
+      {Object.keys(props.basketItems).map((phone) => (
+        <li key={phone}>{phone} {(props.basketItems[phone] > 1) ? '(' + props.basketItems[phone] + ')' : null}<button onClick={()=> {
+          props.handleRemoveFromBasket(phone);
+          }}>x</button></li>
+      
         ))}
       </ul>
     </section>
